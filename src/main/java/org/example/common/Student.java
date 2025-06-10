@@ -1,6 +1,8 @@
-package org.example;
+package org.example.common;
 
-public abstract class Student {
+import java.io.Serializable;
+
+public abstract class Student implements Serializable {
     private String name;
     private int age;
     private String studentId;

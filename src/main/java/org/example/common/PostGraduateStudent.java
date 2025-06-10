@@ -1,4 +1,4 @@
-package org.example;
+package org.example.common;
 
 public class PostGraduateStudent extends Student implements Remunerable {
 
