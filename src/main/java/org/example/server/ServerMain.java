@@ -1,28 +1,21 @@
 package org.example.server;
 
-import org.example.common.StudentService;
+import org.example.common.ProtocolService;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.Naming;
+import java.rmi.registry.LocateRegistry;
 
 public class ServerMain {
     public static void main(String[] args) {
         try {
-            // Cria o registro RMI na porta 1099 (padrão)
-            LocateRegistry.createRegistry(1099);
-            System.out.println("RMI Registry iniciado na porta 1099.");
-
-            // Cria a instância do serviço
-            StudentService studentService = new StudentServiceImpl();
-
-            // Registra o serviço com um nome único
-            Naming.rebind("rmi://localhost/StudentService", studentService);
-
-            System.out.println("StudentService registrado e pronto para receber requisições.");
+            LocateRegistry.createRegistry(1099); // Porta padrão do RMI
+            ProtocolService protocol = new ProtocolServiceImpl();
+            Naming.rebind("ProtocolService", protocol);
+            System.out.println("Servidor RMI pronto em: rmi://localhost/ProtocolService");
         } catch (Exception e) {
             System.err.println("Erro ao iniciar o servidor: " + e.getMessage());
             e.printStackTrace();
         }
     }
 }
+
